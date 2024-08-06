@@ -1,9 +1,9 @@
 # 環境準備
 ## ソフトウェアインストール
-[!CAUTION]
-本勉強会で使用する環境はLinux（Ubuntu等）やMacOSを推奨します。
-- ZeroSpaceではDocker Desktopをインストールする際に管理者権限を求められること
-- Oracle Databaseのコンテナを作成する公式手順がbash利用のため（Windowsでbash利用することは可能だがZeroSpaceでは上記同様に管理者権限を必要とするため）
+> [!CAUTION]
+> 本勉強会で使用する環境はLinux（Ubuntu等）やMacOSを推奨します。
+> - ZeroSpaceではDocker Desktopをインストールする際に管理者権限を求められること
+> - Oracle Databaseのコンテナを作成する公式手順がbash利用のため（Windowsでbash利用することは可能だがZeroSpaceでは上記同様に管理者権限を必要とするため）
 
 ### Gitクライアント（Windows OS）
 https://git-scm.com/download/win からインストールする。
@@ -31,8 +31,8 @@ Gitを用いて下記コマンドからインストールする。
 git clone https://github.com/oracle/docker-images.git
 ```
 
-[!TIPS]
-Windowsで`git clone`した際に下記のようなエラーが出る場合があります。
+> [!TIP]
+> Windowsで`git clone`した際に下記のようなエラーが出る場合があります。
 
 ```
 git : Cloning into 'docker-images'...
