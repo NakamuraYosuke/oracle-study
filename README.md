@@ -61,7 +61,7 @@ git clone https://github.com/oracle/docker-images.git
 
 シングルインスタンスのイメージを作成する資材があるディレクトリへ移動
 ```
-cd ./docker-images/OracleDatabase/SingleInstance
+cd ./docker-images/OracleDatabase/SingleInstance/dockerfiles
 ```
 
 イメージ作成のシェルを実行します。
