@@ -166,7 +166,7 @@ TNS-12541: TNS:no listener
 ![](./images/listener.png)
 > [!TIP]
 > 上記例ではOracle クライアントを用いた接続例となります。
-> OAPやコンテナ基盤（BLUE Pod除く）ではクライアント接続となっており、BLUE PodではOracle JDBCドライバによりリスナーへ接続しています。
+> OAPやコンテナ基盤（BLUE Pod除く）ではOCI接続となっており、BLUE PodではOracle JDBCドライバによりリスナーへ接続しています。
 > ![](images/listener_connect.png)
 
 ### リスナーの定義情報
@@ -333,9 +333,9 @@ Database opened.
 > [!IMPORTANT]
 > Oracleの起動は SHUTDOWN→NOMOUNT→MOUNT→OPENで遷移します。
 >
-> NOMOUNT：パラメータを読み込み、バックグラウンドプロセスの起動と共有メモリを確保
-> MOUNT：制御ファイル（データベースの構成情報が定義されたファイル）の読み込み
-> OPEN：データファイルやREDOログファイルのチェックを行う
+> - NOMOUNT：パラメータを読み込み、バックグラウンドプロセスの起動と共有メモリを確保
+> - MOUNT：制御ファイル（データベースの構成情報が定義されたファイル）の読み込み
+> - OPEN：データファイルやREDOログファイルのチェックを行う
 >
 > OPEN状態にならないとデータベースは正常な処理ができません。
 > 
