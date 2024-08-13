@@ -107,8 +107,13 @@ d62a9e199c24   oracle/database:19.3.0-ee   "/bin/bash -c 'exec …"   7 days ago
 # Oracle Database 操作編
 ## コンテナへのログイン
 前述の`docker ps`またはDocker Desktopで確認した`CONTAINER ID`をもとに下記コマンドでログインします。
+以後、CONTAINER_IDは多く使用するので環境変数に設定しておきましょう。
 ```
-docker exec -it <CONTAINER ID>> bash
+export CONTAINER_ID=d62a9e199c24
+（各自の環境に応じたIDを設定します）
+```
+```
+docker exec -it $CONTAINER_ID bash
 ```
 
 ## リスナー起動状態の確認
@@ -376,6 +381,7 @@ docker cp hr_uninstall.sql $CONTAINER_ID:/home/oracle/hr_uninstall.sql
 
 Oracleデータベースへ接続します。
 ```
+docker exec -it $CONTAINER_ID bash
 sqlplus system/Password as sysdba
 ```
 
