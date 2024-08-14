@@ -64,6 +64,22 @@ git clone https://github.com/oracle/docker-images.git
 cd ./docker-images/OracleDatabase/SingleInstance/dockerfiles
 ```
 
+下記Oracle公式サイトよりOracle Databaseソフトウェアをダウンロードします。
+`https://www.oracle.com/database/technologies/oracle-database-software-downloads.html#db_free`
+
+該当の環境に応じたソフトウェアを選択します。
+```
+echo $(arch) 
+```
+Linux/MacOS環境の場合、
+- arm64と表示されれば`Oracle Database 19c for LINUX ARM (aarch64)`を選択
+- そうでなければ`Oracle Database 19c for Linux x86-64`を選択
+
+ZIPファイルをダウンロード後、下記ディレクトリにZIPファイルを移動します。
+```
+docker-images/OracleDatabase/SingleInstance/dockerfiles/19.3.0
+```
+
 イメージ作成のシェルを実行します。
 今回使用するバージョンは`19.3`なので、引数としてバージョンを付与します。
 ```
@@ -80,9 +96,9 @@ oracle/database   19.3.0-ee   efd629f521d3   21 hours ago   5.55GB
 ```
 
 ## Oracle Database コンテナの起動
-上記のイメージをもとに`docker run`コマンドでコンテナを起動します。
-下記例では、接続パスワードを`Password1234`としています。
-また、リスナーで使用するポート`1521`とEnterprise Manager（OEM）で使用するポート`5500`をポートフォワードしています。
+上記のイメージをもとに`docker run`コマンドでコンテナを起動します。（数分かかります）
+- 下記例では、接続パスワードを`Password1234`としています。
+- リスナーで使用するポート`1521`とEnterprise Manager（OEM）で使用するポート`5500`をポートフォワードしています。
 
 ```
 docker run -e ORACLE_PDB=oracle -e ORACLE_PWD=Password1234 -p 1521:1521 -p 5500:5500 oracle/database:19.3.0-ee
