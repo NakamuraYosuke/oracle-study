@@ -263,7 +263,7 @@ Oracle Databaseへの接続はローカル接続とリモート接続の2種類�
 ### リスナー接続を試みる
 先ほどのSQL*Plusターミナルからは一度抜けます。
 ```
-SQL> exit
+exit
 ```
 SQL*Plusでリスナー接続を試みる場合、`@接続識別子`を付与します。
 ```
@@ -301,7 +301,7 @@ Oracle データベースインスタンスに接続します。
 sqlplus system/Password1234 as sysdba
 ```
 ```
-SQL> SHOW SGA
+SHOW SGA
 ```
 ```
 Total System Global Area 2466247560 bytes
@@ -311,7 +311,7 @@ Database Buffers         1828716544 bytes
 Redo Buffers                7606272 bytes
 ```
 ```
-SQL> SHOW PARAMETER SGA
+SHOW PARAMETER SGA
 ```
 ```
 NAME                                 TYPE        VALUE
@@ -342,12 +342,12 @@ ALTER SYSTEM SET SGA_TARGET=4096M SCOPE=SPFILE;
 > Oracleの初期化パラメータはSPFILEというファイルに定義されています。
 > SPFILEはバイナリファイルのため、中身をエディタ等で確認したい場合には下記のようにSPFILEからPFILEを作成することで可読可能となります。
 ```
-SQL> CREATE PFILE FROM SPFILE;
+CREATE PFILE FROM SPFILE;
 ```
 
 2つの初期化パラメータを変更したら、Oracle Databaseインスタンスを再起動します。
 ```
-SQL> SHUTDOWN IMMEDIATE;
+SHUTDOWN IMMEDIATE;
 ```
 ```
 Database closed.
@@ -359,7 +359,7 @@ ORACLE instance shut down.
 sqlplus system/Password as sysdba
 ```
 ```
-SQL> STARTUP
+STARTUP
 ```
 ```
 ORACLE instance started.
@@ -385,7 +385,7 @@ Database opened.
 > 
 SGAを確認してみます。
 ```
-SQL> SHOW SGA
+SHOW SGA
 ```
 SGAのサイズが拡張されていることが確認できます。
 ```
@@ -426,16 +426,16 @@ CDBではなくPDBに対して実行します。
 （CDBに対してユーザ作成はNGのため）
 
 ```
-SQL> ALTER SESSION SET CONTAINER = ORACLE;
+ALTER SESSION SET CONTAINER = ORACLE;
 ```
 > [!TIP]
-> 今接続しているコンテナ名を調べるには`SQL> SHOW CON_NAME;`
+> 今接続しているコンテナ名を調べるには`SHOW CON_NAME;`
 > 
-> PDBを調べるには`SQL> SELECT PDB_NAME FROM CDB_PDBS;`
+> PDBを調べるには`SELECT PDB_NAME FROM CDB_PDBS;`
 
 ### サンプルデータ作成資材の実行
 ```
-SQL> @hr_install.sql
+@hr_install.sql
 ```
 `hr`ユーザのパスワードは好きに設定してください。表領域はデフォルトの`USERS`でOKです。
 > [!TIP]
@@ -448,7 +448,7 @@ sqlplus hr/Password1234@ORACLE
 
 作成したテーブル`EMPLOYEES`の定義情報を調べてみましょう。
 ```
-SQL> DESC EMPLOYEES
+DESC EMPLOYEES
 ```
 下記のようなカラム定義が出力されます。
 ```
@@ -517,7 +517,7 @@ Automatic Workload Repositoryの略で、Databaseno稼働統計とワークロ�
 ### スナップショットを実行
 取得レベルを`TYPICAL`としてスナップショットを実行します。
 ```
-SQL> EXECUTE DBMS_WORKLOAD_REPOSITORY.CREATE_SNAPSHOT('TYPICAL');
+EXECUTE DBMS_WORKLOAD_REPOSITORY.CREATE_SNAPSHOT('TYPICAL');
 ```
 下記のメッセージが出力されれば正常に実行できています。
 ```
@@ -530,9 +530,9 @@ sqlplus hr/Password1234@ORACLE
 ```
 
 ```
-SQL> SELECT COUNT(*) FROM EMPLOYEES;
-SQL> SELECT EMPLOYEE_ID,FIRST_NAME,LAST_NAME,SALARY FROM EMPLOYEES WHERE SALARY = (SELECT MAX(SALARY) FROM EMPLOYEES);
-SQL> SELECT DEPARTMENT_ID,SUM(SALARY) FROM EMPLOYEES GROUP BY DEPARTMENT_ID ORDER BY DEPARTMENT_ID;
+SELECT COUNT(*) FROM EMPLOYEES;
+SELECT EMPLOYEE_ID,FIRST_NAME,LAST_NAME,SALARY FROM EMPLOYEES WHERE SALARY = (SELECT MAX(SALARY) FROM EMPLOYEES);
+SELECT DEPARTMENT_ID,SUM(SALARY) FROM EMPLOYEES GROUP BY DEPARTMENT_ID ORDER BY DEPARTMENT_ID;
 ```
 
 SQL*Plusにsystemユーザで再度ログインし、スナップショットを実行します。
@@ -540,7 +540,7 @@ SQL*Plusにsystemユーザで再度ログインし、スナップショットを
 sqlplus system/Password1234 as sysdba
 ```
 ```
-SQL> EXECUTE DBMS_WORKLOAD_REPOSITORY.CREATE_SNAPSHOT('TYPICAL');
+EXECUTE DBMS_WORKLOAD_REPOSITORY.CREATE_SNAPSHOT('TYPICAL');
 ```
 ここまでで、AWRの取得に向けたBEGIN/ENDのスナップショット取得が完了です。
 
@@ -548,7 +548,7 @@ SQL> EXECUTE DBMS_WORKLOAD_REPOSITORY.CREATE_SNAPSHOT('TYPICAL');
 AWRを手動で取得するためのスクリプトが標準で用意されています。
 systemユーザでAWR取得の資材を実行します
 ```
-SQL> @$ORACLE_HOME/rdbms/admin/awrrpt.sql
+@$ORACLE_HOME/rdbms/admin/awrrpt.sql
 ```
 - 出力されるレポート形式を聞かれます。今回は`html`を選択。
 - 次に、スナップショットの取得日を聞かれます。今回は`1`を選択。
